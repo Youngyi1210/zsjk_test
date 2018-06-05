@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.3 (Python 3.6.3 on darwin)" generated="20180605 15:44:26.393">
+<suite id="s1" name="Test If" source="/Users/yiyang/Desktop/young/tests/test_if.robot">
+<test id="s1-t1" name="testpost">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20180605 15:44:26.547" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20180605 15:44:26.546" endtime="20180605 15:44:26.547"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>eid=1</arg>
+</arguments>
+<assign>
+<var>${payload}</var>
+</assign>
+<msg timestamp="20180605 15:44:26.547" level="INFO">${payload} = {'eid': '1'}</msg>
+<status status="PASS" starttime="20180605 15:44:26.547" endtime="20180605 15:44:26.547"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>login</arg>
+<arg>http://127.0.0.1:8000</arg>
+</arguments>
+<msg timestamp="20180605 15:44:26.548" level="INFO">Creating Session using : alias=login, url=http://127.0.0.1:8000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20180605 15:44:26.547" endtime="20180605 15:44:26.548"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>login</arg>
+<arg>/login_action/</arg>
+<arg>params=${payload}</arg>
+</arguments>
+<assign>
+<var>${r}</var>
+</assign>
+<msg timestamp="20180605 15:44:26.562" level="INFO">Post Request using : alias=login, uri=/login_action/, data=&lt;empty&gt;, headers=None, files=None, allow_redirects=True </msg>
+<msg timestamp="20180605 15:44:26.563" level="INFO">${r} = &lt;Response [403]&gt;</msg>
+<status status="PASS" starttime="20180605 15:44:26.548" endtime="20180605 15:44:26.563"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${r.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180605 15:44:26.563" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180605 15:44:26.563" level="FAIL">403 != 200</msg>
+<status status="FAIL" starttime="20180605 15:44:26.563" endtime="20180605 15:44:26.563"></status>
+</kw>
+<status status="FAIL" starttime="20180605 15:44:26.545" endtime="20180605 15:44:26.564" critical="yes">403 != 200</status>
+</test>
+<status status="FAIL" starttime="20180605 15:44:26.396" endtime="20180605 15:44:26.564"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Test If">Test If</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
